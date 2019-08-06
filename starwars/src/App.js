@@ -13,22 +13,22 @@ import CharacterList from './components/CharacterList';
   // sync up with, if any.
 
   function App() {
-    const [ starWarsChars, setStarWarsChars ] = useState([]);
+    const [ starWarsChars, setStarWarsChars ] = useState([]);  // sets state
   
-    useEffect(() => {
+    useEffect(() => {  //hits an API
       function fetchData() {
-        const res = axios.get(
-          `https://swapi.co/api/people`
+        const res = axios.get(  //sends a get request
+          `https://swapi.co/api/people`    // api url that its fetching
         );
         res
-          .then(res => {
-            setStarWarsChars(res.data.results);
+          .then(res => {  //If the request has been completed successfully the function is called with is passed into the call of the then method
+            setStarWarsChars(res.data.results);  //setting state
           })
-          .catch(error => {
+          .catch(error => {   //if the then method is unsccesfull the catch method will execute
             console.log(error.message)
           })
       }
-      if(starWarsChars.length === 0){
+      if(starWarsChars.length === 0){  
         fetchData();
       }
     });
@@ -36,7 +36,7 @@ import CharacterList from './components/CharacterList';
       <div className="App-wars">
         <header className="header">
         React Wars
-        </header>
+        </header>  
         <CharacterList chars={starWarsChars}/>
       </div>
     );
